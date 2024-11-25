@@ -13,38 +13,40 @@ public class AddUserServlet extends HttpServlet {
     @Override protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
+        boolean adding = false;
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
-            String sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String sqlQuery = "SELECT id FROM users WHERE username = ?";
             PreparedStatement ps = conn.prepareStatement(sqlQuery);
             ps.setString(1, user);
-            ps.setString(2, pass);
             ResultSet rs = ps.executeQuery(); 
-            boolean valid = true;
             
-            //Checking for Username matches
-            while(rs.next()){
-            	 if(rs.getString("username").equals(user)) { valid = false; break; }
-            }
-            
-            //Handling Post-Verification Response
-            if (valid) {
-            	sqlQuery = "INSERT INTO users VALUES (?,?)";
+            //Verification & Response
+            if (!rs.next()) {
+            	sqlQuery = "INSERT INTO users(username, password) VALUES (?,?)";
             	ps = conn.prepareStatement(sqlQuery);
             	ps.setString(1, user);
                 ps.setString(2, pass);
-                response.getWriter().println("Registration Successful!");
+                adding = true; // Avoiding "empty result set" exception
+                ps.executeQuery();
+                
             } 
             else {
-                response.getWriter().println("Username already registered.");
+                response.getWriter().println("Username already registered."); // MUST CHANGE TO REDIRECTION
             }
             
             conn.close();
         }
         catch (Exception e) {
-            e.printStackTrace();
-            response.getWriter().println("An error occurred: " + e.getMessage());
+            if(!adding){
+            	e.printStackTrace();
+            	response.getWriter().println("An error occurred: " + e.getMessage());
+            }
+        }
+        
+        if(adding) {
+        	response.getWriter().println("Registration Successful!"); // MUST CHANGE TO REDIRECTION
         }
     }
 }

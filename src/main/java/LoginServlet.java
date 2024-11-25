@@ -16,13 +16,16 @@ public class LoginServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
-            String sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String sqlQuery = "SELECT id FROM users WHERE username = ? AND password = ?";
             PreparedStatement ps = conn.prepareStatement(sqlQuery);
             ps.setString(1, user);
             ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+            	
                 response.getWriter().println("Login Successful!");
+                response.getWriter().println("ID: " + rs.getInt("id"));
+                response.getWriter().println("Find a way to save this value.");
             } 
             else {
                 response.getWriter().println("Invalid username or password.");
