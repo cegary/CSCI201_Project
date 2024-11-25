@@ -22,7 +22,6 @@ public class LoginServlet extends HttpServlet {
             ps.setString(2, pass);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-            	
                 response.getWriter().println("Login Successful!");
                 response.getWriter().println("ID: " + rs.getInt("id"));
                 response.getWriter().println("Find a way to save this value.");
