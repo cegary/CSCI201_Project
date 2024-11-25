@@ -30,6 +30,7 @@ public class AddUserServlet extends HttpServlet {
                 ps.setString(2, pass);
                 adding = true; // Avoiding "empty result set" exception
                 ps.executeQuery();
+                
             } 
             else {
                 response.getWriter().println("Username already registered."); // MUST CHANGE TO REDIRECTION
