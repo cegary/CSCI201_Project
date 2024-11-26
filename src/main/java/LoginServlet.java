@@ -30,7 +30,6 @@ public class LoginServlet extends HttpServlet {
             else {
                 response.getWriter().println("Invalid username or password.");
             }
-            
             conn.close();
         }
         catch (Exception e) {
