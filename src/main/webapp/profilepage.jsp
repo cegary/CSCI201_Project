@@ -5,6 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <link href="styles/output.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
+    <script>
+    
+    function getPosts(){
+    	const user = localStorage.getItem("user_id");
+    	const s_url = window.location.origin + "/CSCI201_Project/";
+    	const url = new URL("ProfileServlet", s_url);
+    	url.searchParams.append("user_id", user);
+    	fetch(url, {
+    		method: "GET",
+    	})
+		.then(response => response.json())
+    	.then(data => {
+    			if (data.posts === null || data.posts === undefined) {
+    				console.log("empty!!!");
+    			}
+    			else{
+    				print(data.posts);
+    			}
+    	})
+    	.catch(error => {
+    		console.log(error);
+    	});
+    }
+    
+    
+    function print(posts) {
+    	posts.forEach(function(post) {
+    		let newPost = document.createElement("a");
+    		document.getElementById("postContainer").appendChild(newPost);
+    		newPost.href = "#";
+    		newPost.class = "mb-8 block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto";
+    		newPost.innerHTML = post;
+    	});
+    }
+    
+    window.onload = function() {
+    	getPosts();
+    };
+    
+    </script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-800">
     <!-- Navbar -->
@@ -51,45 +91,8 @@
         <h1 class="text-3xl font-bold text-center mb-6 text-blue-800 dark:text-gray-200">Your Profile</h1>
 
         <!-- Cards Container -->
-        <div class="space-y-16"> <!-- Adds spacing between cards -->
-            <!-- Card 1 -->
-            <a href="#" class="block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto">
-                <div class="flex flex-col items-center md:flex-row">
-                    <img class="w-48 h-32 rounded-lg object-cover" src="https://via.placeholder.com/300x200" alt="Resource Image">
-                    <div class="ml-12 flex flex-col justify-between w-full"> <!-- Increased margin-left to 12 -->
-                        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Winter Jackets</h5>
-                        <p class="text-gray-700 dark:text-gray-400 mt-2">High-quality winter jackets available for those in need.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Location: Denver, CO</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300">Contact: winteraid@example.com</p>
-                    </div>
-                </div>
-            </a>
+        <div id="postContainer" class="space-y-16"> <!-- Adds spacing between cards -->
 
-            <!-- Card 2 -->
-            <a href="#" class="block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto">
-                <div class="flex flex-col items-center md:flex-row">
-                    <img class="w-48 h-32 rounded-lg object-cover" src="https://via.placeholder.com/300x200" alt="Resource Image">
-                    <div class="ml-12 flex flex-col justify-between w-full"> <!-- Increased margin-left to 12 -->
-                        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Food Supplies</h5>
-                        <p class="text-gray-700 dark:text-gray-400 mt-2">Non-perishable food items for families in need.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Location: Los Angeles, CA</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300">Contact: foodsupport@example.com</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 3 -->
-            <a href="#" class="block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto">
-                <div class="flex flex-col items-center md:flex-row">
-                    <img class="w-48 h-32 rounded-lg object-cover" src="https://via.placeholder.com/300x200" alt="Resource Image">
-                    <div class="ml-12 flex flex-col justify-between w-full"> <!-- Increased margin-left to 12 -->
-                        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Emergency Shelter</h5>
-                        <p class="text-gray-700 dark:text-gray-400 mt-2">Temporary housing available for disaster victims.</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Location: Austin, TX</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-300">Contact: shelterhelp@example.com</p>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
 </body>

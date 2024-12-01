@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import javax.servlet.ServletException;
@@ -11,9 +13,10 @@ public class LoginServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:5432/postgres?user=postgres.olisivusijyhootkipzo&password=disaster_relief201";
 
     @Override protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user = request.getParameter("username");
+        
+    	String user = request.getParameter("username");
         String pass = request.getParameter("password");
-
+        
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
             String sqlQuery = "SELECT id FROM users WHERE username = ? AND password = ?";
@@ -23,9 +26,7 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()) {
-                response.getWriter().println("Login Successful!");
-                response.getWriter().println("ID: " + rs.getInt("id"));
-                response.getWriter().println("Find a way to save this value.");
+            	response.getWriter().write("{\"user_id\":" + rs.getInt("id") + "}");
             } 
             else {
                 response.getWriter().println("Invalid username or password.");
