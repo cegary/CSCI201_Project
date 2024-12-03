@@ -23,6 +23,10 @@ while(rs.next()){
 	byte[] img = rs.getBytes("image");
 	String b64img = Base64.getEncoder().encodeToString(img);
 	String src = "data:image/jpeg;base64," + b64img;
+	String location = rs.getString("location");
+    String mapSrc = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCUPIxY9VDROwKBoqtVBezEqp9Y3d6-BsM&q=" + 
+                    java.net.URLEncoder.encode(location, "UTF-8");
+                    
 	out.println("<a href=\"#\" class=\"block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto\">\n"
     		+ "    <div class=\"flex flex-col items-center md:flex-row\">\n"
     		+ "        <img class=\"w-48 h-32 rounded-lg object-cover\" src=\"" + src + "\" alt=\"Resource Image\">\n"
@@ -31,6 +35,14 @@ while(rs.next()){
     		+ "            <p class=\"text-gray-700 dark:text-gray-400 mt-2\">" + rs.getString("resources") + "</p>\n"
     		+ "            <p class=\"text-sm text-gray-500 dark:text-gray-300 mt-2\">Location: " + rs.getString("location") + "</p>\n"
     		+ "            <p class=\"text-sm text-gray-500 dark:text-gray-300\">Contact: EMPTY FOR NOW!</p>\n"
+    		+ "            <div class=\"mt-4\">\n"
+    		+ "                <iframe\n"
+    		+ "                    class=\"rounded-lg border border-gray-300 shadow-sm w-full h-48\"\n"
+    		+ "                    src=\"" + mapSrc + "\"\n"
+    		+ "                    loading=\"lazy\"\n"
+    		+ "                    allowfullscreen\n"
+    		+ "                </iframe>\n"
+    		+ "            </div>\n"
     		+ "        </div>\n"
     		+ "    </div>\n"
     		+ "	</a>");
