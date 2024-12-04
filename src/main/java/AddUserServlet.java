@@ -20,7 +20,7 @@ public class AddUserServlet extends HttpServlet {
             String sqlQuery = "SELECT id FROM users WHERE username = ?";
             PreparedStatement ps = conn.prepareStatement(sqlQuery);
             ps.setString(1, user);
-            ResultSet rs = ps.executeQuery(); 
+            ResultSet rs = ps.executeQuery();
             
             //Verification & Response
             if (!rs.next()) {
@@ -30,7 +30,6 @@ public class AddUserServlet extends HttpServlet {
                 ps.setString(2, pass);
                 adding = true; // Avoiding "empty result set" exception
                 ps.executeQuery();
-                
             } 
             else {
                 response.getWriter().println("Username already registered."); // MUST CHANGE TO REDIRECTION

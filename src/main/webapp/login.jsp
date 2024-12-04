@@ -8,7 +8,7 @@
 <body class="bg-gray-100 h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-1/3">
         <h1 class="text-2xl font-bold mb-4 text-center">Login</h1>
-        <form action="LoginServlet" method="post" class="space-y-4">
+        <form onsubmit="submitLogin(event)" method="post" class="space-y-4">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
                 <input type="text" id="username" name="username" required 
@@ -30,5 +30,54 @@
             <a href="register.jsp" class="text-blue-500 hover:underline">Don't have an account? Register here!</a>
         </div>
     </div>
+    <script>
+    function submitLogin(event) {
+    	event.preventDefault();
+    	
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+     
+
+      
+     
+        const dataSend = new URLSearchParams();
+        dataSend.append("username", username);
+        dataSend.append("password", password);
+        
+    	//console.log(payload);
+
+        // Make the fetch request to the RegisterServlet
+        const baseURL = window.location.origin + "/CSCI201_Project/";
+        const url = baseURL + "LoginServlet";
+    	
+        // Send the data as a POST request
+        fetch(url, {
+            method: "POST",
+            body: dataSend,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle response from the servlet
+            if (data.user_id != -1) {
+            	console.log("id: " + data.user_id);
+    			localStorage.setItem("user_id", data.user_id);
+    			window.location.href = "profilepage.jsp";
+            } else {
+    			
+                alert("Invalid username or password.");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            console.log(error);
+        });
+    	
+    	
+    }
+
+    
+    </script>
+    
+    
 </body>
 </html>
