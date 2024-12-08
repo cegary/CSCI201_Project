@@ -29,7 +29,7 @@
     function print(usr, title, loc, contact, desc, src) {
     	
     	let newPost = document.createElement("div");
-    	newPost.className = "bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full !max-w-md mx-auto !h-60";
+    	newPost.className = "bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full mx-auto" style="max-width: 32rem; height: auto;";
     	let post = "<h2 class=\"text-xl font-bold text-gray-800 dark:text-white\">" + title + "</h2>\n"
     		+ "                <p class=\"text-sm text-gray-600 dark:text-white\">" + usr + "</p>\n"
     		+ "                <p class=\"mt-4 text-gray-800 dark:text-white\">\n"
@@ -84,9 +84,9 @@
 
         <!-- Scrollable Feed -->
         <div id="pc" class="space-y-4">
-            <!-- Example Post 
-            <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full !max-w-md mx-auto !h-60"> 
-                <h2 class="text-xl font-bold text-gray-800 dark:text-white">Title</h2>
+            <!-- Example Post --> 
+            <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full mx-auto" style="max-width: 32rem; height: auto;"> 
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white">Example Post</h2>
                 <p class="text-sm text-gray-600 dark:text-white">Username</p>
                 <p class="mt-4 text-gray-800 dark:text-white">
                     Text here
@@ -110,9 +110,22 @@
                     </button>
                 </div>
             </div>
-			-->
+			
             <!-- Repeat the above block for more posts -->
         </div>
     </div>
+    
+		<!-- Create Post Floating Button -->
+		<% 
+		    // Check if the user is logged in
+		    String userId = (String) session.getAttribute("user_id");
+		    String redirectPage = (userId != null) ? "createPost.jsp" : "login.jsp";
+		%>
+		<a href="<%= redirectPage %>" 
+		   class="fixed bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
+		   style="width: 64px; height: 64px; bottom: 40px; right: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+		   <span class="font-bold leading-none" style="font-size: 2.5rem; line-height: 1;">+</span>
+		</a>
+
 </body>
 </html>
