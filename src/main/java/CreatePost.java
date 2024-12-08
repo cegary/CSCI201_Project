@@ -34,20 +34,8 @@ public class CreatePost extends HttpServlet {
             ps.setString(5, request.getParameter("contact"));
             ps.setString(6, request.getParameter("description"));
             ps.execute();
-            
-            /*
-            PROPER PROCEDURE TO PULL IMAGES (REMOVE AFTER IMPLEMENTING POST PAGE)
- 			----------------------------------------
-            ResultSet testPrint = ps.executeQuery();
-            testPrint.next();
-            response.getWriter().println("Entry Added!"); // MUST CHANGE TO REDIRECTION
-            byte[] imgBytes = testPrint.getBytes("image");
-            response.reset();
-            response.getOutputStream().write(imgBytes);
-            */
             conn.close();
             response.sendRedirect(request.getContextPath() + "/profilepage.jsp");
-            
         }
         catch (Exception e) {
             e.printStackTrace();

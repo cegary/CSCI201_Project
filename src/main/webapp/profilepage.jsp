@@ -47,6 +47,8 @@
     	getPosts();
     };
     
+	
+    
     </script>
     <style>
     #postContainer img{
@@ -78,5 +80,11 @@
 
         </div>
     </div>
+ 
+		<a id="create" href="createPost.jsp" 
+		   class="fixed bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
+		   style="width: 64px; height: 64px; bottom: 40px; right: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+		   <span class="font-bold leading-none" style="font-size: 2.5rem; line-height: 1;">+</span>
+		</a>
 </body>
 </html>

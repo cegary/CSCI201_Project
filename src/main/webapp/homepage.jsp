@@ -29,7 +29,8 @@
     function print(usr, title, loc, contact, desc, src) {
     	
     	let newPost = document.createElement("div");
-    	newPost.className = "bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full mx-auto" style="max-width: 32rem; height: auto;";
+    	newPost.className = "bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full mx-auto"; 
+    	newPost.style="max-width: 64rem; height: auto;";
     	let post = "<h2 class=\"text-xl font-bold text-gray-800 dark:text-white\">" + title + "</h2>\n"
     		+ "                <p class=\"text-sm text-gray-600 dark:text-white\">" + usr + "</p>\n"
     		+ "                <p class=\"mt-4 text-gray-800 dark:text-white\">\n"
@@ -84,7 +85,7 @@
 
         <!-- Scrollable Feed -->
         <div id="pc" class="space-y-4">
-            <!-- Example Post --> 
+            <!-- Example Post 
             <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 w-full mx-auto" style="max-width: 32rem; height: auto;"> 
                 <h2 class="text-xl font-bold text-gray-800 dark:text-white">Example Post</h2>
                 <p class="text-sm text-gray-600 dark:text-white">Username</p>

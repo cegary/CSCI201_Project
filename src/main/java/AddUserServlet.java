@@ -28,6 +28,17 @@ public class AddUserServlet extends HttpServlet {
             	ps.setString(1, user);
                 ps.setString(2, pass);
                 ps.execute();
+                
+                sqlQuery = "SELECT id FROM users WHERE username = ? AND password = ?";
+                ps = conn.prepareStatement(sqlQuery);
+                ps.setString(1, user);
+                ps.setString(2, pass);
+                rs = ps.executeQuery();
+                
+                if(rs.next()) {
+                	response.getWriter().write("{\"user_id\":" + rs.getInt(1) + "}");
+                }
+                
             } 
             else {
                 response.getWriter().println("Username already registered.");

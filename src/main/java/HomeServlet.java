@@ -20,7 +20,7 @@ public class HomeServlet extends HttpServlet {
         String id = request.getParameter("user_id");
         try {
         	Connection conn = DriverManager.getConnection(DB_URL);
-        	String sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id";
+        	String sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id ORDER BY posts.post_id DESC";
         	PreparedStatement ps = conn.prepareStatement(sqlQuery);
         	ResultSet rs = ps.executeQuery();
         	String posts = "{\"posts\":[";
