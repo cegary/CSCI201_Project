@@ -116,16 +116,34 @@
     </div>
     
 		<!-- Create Post Floating Button -->
-		<% 
-		    // Check if the user is logged in
-		    String userId = (String) session.getAttribute("user_id");
-		    String redirectPage = (userId != null) ? "createPost.jsp" : "login.jsp";
-		%>
-		<a href="<%= redirectPage %>" 
-		   class="fixed bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
-		   style="width: 64px; height: 64px; bottom: 40px; right: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-		   <span class="font-bold leading-none" style="font-size: 2.5rem; line-height: 1;">+</span>
-		</a>
+		<script>
+		    document.addEventListener("DOMContentLoaded", function () {
+		        // Check if the user is logged in
+		        const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+		        const redirectPage = userId ? "createPost.jsp" : "login.jsp"; // Decide redirect page
+		
+		        // Create the floating button dynamically
+		        const floatingButton = document.createElement("a");
+		        floatingButton.href = redirectPage;
+		        floatingButton.className = "fixed bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition";
+		        floatingButton.style.width = "64px";
+		        floatingButton.style.height = "64px";
+		        floatingButton.style.bottom = "40px";
+		        floatingButton.style.right = "40px";
+		        floatingButton.style.borderRadius = "50%";
+		        floatingButton.style.display = "flex";
+		        floatingButton.style.alignItems = "center";
+		        floatingButton.style.justifyContent = "center";
+		
+		        floatingButton.innerHTML = `
+		            <span class="font-bold leading-none" style="font-size: 2.5rem; line-height: 1;">+</span>
+		        `;
+		
+		        // Append the button to the DOM
+		        document.body.appendChild(floatingButton);
+		    });
+		</script>
+
 
 </body>
 </html>
