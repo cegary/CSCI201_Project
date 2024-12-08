@@ -21,7 +21,7 @@ public class ProfileServlet extends HttpServlet {
         ArrayList<String> posts = new ArrayList<>();
         try {
         	Connection conn = DriverManager.getConnection(DB_URL);
-        	String sqlQuery = "SELECT title, location, image, resources, details FROM posts WHERE user_id = ?";
+        	String sqlQuery = "SELECT title, location, image, contact, description FROM posts WHERE user_id = ?";
         	PreparedStatement ps = conn.prepareStatement(sqlQuery);
         	ps.setInt(1, Integer.valueOf(id)); 
         	ResultSet rs = ps.executeQuery();
@@ -34,15 +34,20 @@ public class ProfileServlet extends HttpServlet {
         	    		+ "        <img class=\"w-48 h-32 rounded-lg object-cover\" src=\"" + src + "\" alt=\"Resource Image\">\n"
         	    		+ "        <div class=\"ml-12 flex flex-col justify-between w-full\"> <!-- Increased margin-left to 12 -->\n"
         	    		+ "            <h5 class=\"text-2xl font-bold tracking-tight text-gray-900 dark:text-white\">" + rs.getString("title") + "</h5>\n"
-        	    		+ "            <p class=\"text-gray-700 dark:text-gray-400 mt-2\">" + rs.getString("resources") + "</p>\n"
-        	    		+ "            <p class=\"text-sm text-gray-500 dark:text-gray-300 mt-2\">Location: " + rs.getString("location") + "</p>\n"
-        	    		+ "            <p class=\"text-sm text-gray-500 dark:text-gray-300\">Contact: EMPTY FOR NOW!</p>\n"
+        	    		+ "            <p class=\"text-gray-700 dark:text-gray-400 mt-2\">Description: " + rs.getString("description") + "</p>\n"
+        	    		+ "            <p class=\"text-sm text-gray-500 dark:text-gray-300\">Contact: " + rs.getString("contact") + "</p>\n"
+        	    		+ "			   <div class=\"mt-4\">\n"
+        	    		+ "                <iframe\n"
+        	    		+ "                    class=\"rounded-lg border border-gray-300 shadow-sm w-full h-48\"\n"
+        	    		+ "                    src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyCUPIxY9VDROwKBoqtVBezEqp9Y3d6-BsM&q=" + rs.getString("location") + "\"\n"
+        	    		+ "                    loading=\"lazy\"\n"
+        	    		+ "                    allowfullscreen\n"
+        	    		+ "                </iframe>\n"
+        	    		+ "            </div>\n"
         	    		+ "        </div>\n"
         	    		+ "    </div>\n";
         		posts.add(input);
-        		System.out.println(input);
         	}
-        	System.out.println(posts.size());
         	Gson gson = new Gson();
         	String json = gson.toJson(posts);
         	response.getWriter().write("{\"posts\":" + json + "}");

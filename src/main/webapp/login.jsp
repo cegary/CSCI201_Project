@@ -59,12 +59,11 @@
         .then(data => {
             // Handle response from the servlet
             if (data.user_id != -1) {
-            	console.log("id: " + data.user_id);
     			localStorage.setItem("user_id", data.user_id);
     			window.location.href = "profilepage.jsp";
             } else {
     			
-                alert("Invalid username or password.");
+                alert(JSON.stringify(data));
             }
         })
         .catch(error => {

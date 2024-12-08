@@ -13,7 +13,6 @@ public class AddUserServlet extends HttpServlet {
     @Override protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-        boolean adding = false;
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
@@ -28,24 +27,18 @@ public class AddUserServlet extends HttpServlet {
             	ps = conn.prepareStatement(sqlQuery);
             	ps.setString(1, user);
                 ps.setString(2, pass);
-                adding = true; // Avoiding "empty result set" exception
-                ps.executeQuery();
+                ps.execute();
             } 
             else {
-                response.getWriter().println("Username already registered."); // MUST CHANGE TO REDIRECTION
+                response.getWriter().println("Username already registered.");
             }
             
             conn.close();
         }
         catch (Exception e) {
-            if(!adding){
-            	e.printStackTrace();
-            	response.getWriter().println("An error occurred: " + e.getMessage());
-            }
-        }
-        
-        if(adding) {
-        	response.getWriter().println("Registration Successful!"); // MUST CHANGE TO REDIRECTION
+            e.printStackTrace();
+            response.getWriter().println("An error occurred: " + e.getMessage());
+            
         }
     }
 }

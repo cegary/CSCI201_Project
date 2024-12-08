@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
-    <link href="styles/output.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
+    
     <script>
     
     function getPosts(){
@@ -35,9 +35,12 @@
     		let newPost = document.createElement("a");
     		document.getElementById("postContainer").appendChild(newPost);
     		newPost.href = "#";
-    		newPost.class = "mb-8 block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto";
+    		newPost.className = "block bg-white border border-gray-200 rounded-lg shadow-lg p-4 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-3xl mx-auto";
     		newPost.innerHTML = post;
+    		newPost.style.marginBottom = "30px";
+    		
     	});
+    	
     }
     
     window.onload = function() {
@@ -45,12 +48,24 @@
     };
     
     </script>
+    <style>
+    #postContainer img{
+	    width: 250px;
+	    height: auto;
+	    margin-right: 10px;
+    }
+    
+    
+    
+    
+    </style>
+    <link href="styles/output.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
 </head>
 <body class="bg-gray-100 dark:bg-gray-800">
     <!-- Navbar -->
     <nav class="bg-white dark:bg-gray-900 w-full z-20 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="homepage.jsp" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Logo">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ReliefLink</span>
             </a>
@@ -85,13 +100,13 @@
     <!-- Page Content -->
     <div class="max-w-screen-xl mx-auto py-8">
         <!-- Blank Space -->
-        <div class="mb-12"></div> <!-- 3 lines of blank space -->
+        <div class="mb-6"></div> <!-- 3 lines of blank space -->
 
         <!-- Page Header -->
-        <h1 class="text-3xl font-bold text-center mb-6 text-blue-800 dark:text-gray-200">Your Profile</h1>
+        <h1 class="text-3xl font-bold text-center mt-6 mb-6 text-blue-800 dark:text-gray-200">Your Profile</h1>
 
         <!-- Cards Container -->
-        <div id="postContainer" class="space-y-16"> <!-- Adds spacing between cards -->
+        <div id="postContainer" class="space-y-2 mt-3"> <!-- Adds spacing between cards -->
 
         </div>
     </div>

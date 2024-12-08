@@ -19,19 +19,20 @@ public class CreatePost extends HttpServlet {
 
     @Override protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String id = request.getParameter("user_id");
+    	// request.getParameter("contact");
     	
     	/* Try to brainstorm multi-threading ideas or add here */
         
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
-            String sqlQuery =  "INSERT INTO posts(title, user_id, location, image, resources, details) VALUES (?, ?, ?, ?, ?, ?)";
+            String sqlQuery =  "INSERT INTO posts(title, user_id, location, image, contact, description) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sqlQuery);
             ps.setString(1, request.getParameter("title"));
             ps.setInt(2, Integer.valueOf(id));
             ps.setString(3, request.getParameter("location"));
             ps.setBinaryStream(4, request.getPart("image").getInputStream(), request.getPart("image").getSize());
-            ps.setString(5, request.getParameter("resources"));
-            ps.setString(6, request.getParameter("details"));
+            ps.setString(5, request.getParameter("contact"));
+            ps.setString(6, request.getParameter("description"));
             ps.execute();
             
             /*
@@ -44,8 +45,9 @@ public class CreatePost extends HttpServlet {
             response.reset();
             response.getOutputStream().write(imgBytes);
             */
-            
             conn.close();
+            response.sendRedirect(request.getContextPath() + "/profilepage.jsp");
+            
         }
         catch (Exception e) {
             e.printStackTrace();
