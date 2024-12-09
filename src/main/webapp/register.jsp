@@ -31,7 +31,7 @@
     	}
     </script>
 </head>
-<body class="bg-gray-100 h-screen flex flex-col">
+<body style="background-color: #D2EDFF;">
     <!-- Include Navbar -->
     <jsp:include page="navbar.jsp" />
 

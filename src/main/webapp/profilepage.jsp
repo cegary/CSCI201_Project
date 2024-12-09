@@ -63,7 +63,7 @@
     </style>
     <link href="styles/output.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
 </head>
-<body class="bg-gray-100 dark:bg-gray-800">
+<body style="background-color: #D2EDFF;">
     <!-- Include Navbar -->
     <jsp:include page="navbar.jsp" />
 

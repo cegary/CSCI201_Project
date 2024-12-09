@@ -75,13 +75,16 @@
     }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-800">
+<body style="background-color: #D2EDFF;">
 
     <!-- Include Navbar -->
     <jsp:include page="navbar.jsp" />
 
     <!-- Main Content -->
     <div class="pt-20 max-w-screen-xl mx-auto px-4">
+    
+      <!-- Page Header -->
+        <h1 class="text-3xl font-bold text-center mt-6 mb-6 text-blue-800 dark:text-gray-200">Home</h1>
 
         <!-- Scrollable Feed -->
         <div id="pc" class="space-y-4">

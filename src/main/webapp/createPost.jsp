@@ -6,7 +6,7 @@
     <link href="styles/output.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTVVROXxFzkX8e2RVIn6G5raIe6hwJ7rw&loading=async&libraries=maps"></script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-800">
+<body style="background-color: #D2EDFF;">
     <!-- Include Navbar -->
     <jsp:include page="navbar.jsp" />
     
