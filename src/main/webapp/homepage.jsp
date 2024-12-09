@@ -172,9 +172,9 @@
 		
 		<div id="search_area" name="search_areaN" style="height: 30px; margin-top: 15px; margin-bottom: 50px;">
 			<form id="search_form" name="search_formN">	
-				<input type="text" id="searchbar_title" name="searchbar_titleN" placeholder="Search by Title" style="margin-left: 7px; width: 1120px; height: 30px; text-indent: 8px; display: inline;" />
-				<input type="text" id="searchbar_loc" name="searchbar_locN" placeholder="Search by Location" style="margin-left: 7px; width: 1120px; height: 30px; text-indent: 8px; display: none;" />
-				<input type="text" id="searchbar_user"  name="searchbar_userN" placeholder="Search by User" style="margin-left: 7px; width: 1120px; height: 30px; text-indent: 8px; display: none;" />
+				<input type="text" id="searchbar_title" name="searchbar_titleN" placeholder="Search by Title" style="margin-left: 111px; width: 916px; height: 30px; text-indent: 8px; display: inline;" />
+				<input type="text" id="searchbar_loc" name="searchbar_locN" placeholder="Search by Location" style="margin-left: 111px; width: 916px; height: 30px; text-indent: 8px; display: none;" />
+				<input type="text" id="searchbar_user"  name="searchbar_userN" placeholder="Search by User" style="margin-left: 111px; width: 916px; height: 30px; text-indent: 8px; display: none;" />
 				<input type="button" id="search_button" value = "Search" style="display: inline; margin-left: 12px; border-style: solid; border-width: 1px;" onclick="filter_posts();"/>
 				<input type="button" id="reset_button" value = "Reset" style="display: inline; margin-left: 3px; border-style: solid; border-width: 1px;" onclick="reset_posts();"/>
 				<br>

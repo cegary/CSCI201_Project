@@ -29,14 +29,14 @@
                 <div>
                 	<label for="location" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Location</label>
                 	<div id="mapBox"></div>
-   					<input id="location" type="hidden" name="location">
+   					<input id="location" type="hidden" name="location" required>
                     
                 </div>
 
                 <!-- Description -->
                 <div>
                     <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
-                    <textarea id="description" name="description" rows="4" placeholder="Provide a detailed description of the item"
+                    <textarea required id="description" name="description" rows="4" placeholder="Provide a detailed description of the item"
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"></textarea>
                 </div>
 
@@ -50,7 +50,7 @@
                 <!-- Photo Upload -->
                 <div>
                     <label for="photos" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Upload Photos</label>
-                    <input type="file" id="photos" name="image" accept="image/*" multiple
+                    <input type="file" id="photos" name="image" accept="image/*" 
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
                     <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">You can upload an image (e.g., JPEG, PNG).</p>
                 </div>
