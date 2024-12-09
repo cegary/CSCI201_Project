@@ -51,14 +51,6 @@
     		+ "                				></iframe>\n"
     		+ "                        </div>\n"
     		+ "                    </div>\n"
-    		+ "                </div>\n"
-    		+ "                <div class=\"flex items-center justify-between mt-4\">\n"
-    		+ "                    <button class=\"text-gray-600 dark:text-gray-400 hover:text-blue-500\">\n"
-    		+ "                        ❤️\n"
-    		+ "                    </button>\n"
-    		+ "                    <button class=\"text-gray-600 dark:text-gray-400 hover:text-blue-500\">\n"
-    		+ "                        💬\n"
-    		+ "                    </button>\n"
     		+ "                </div>\n";
     	newPost.innerHTML = post;
     	document.getElementById("pc").appendChild(newPost);
