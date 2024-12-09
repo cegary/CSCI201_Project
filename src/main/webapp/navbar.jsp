@@ -46,6 +46,7 @@
                 document.getElementById("logoutButton").addEventListener("click", function () {
                     localStorage.removeItem("user_id");  // Clear user session
                     renderNavbarActions();               // Refresh the navbar
+                    location.href="homepage.jsp";
                 });
             }
         }

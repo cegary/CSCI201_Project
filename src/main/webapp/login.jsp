@@ -66,7 +66,7 @@
             // Handle response from the servlet
             if (data.user_id != -1) {
     			localStorage.setItem("user_id", data.user_id);
-    			window.location.href = "profilepage.jsp";
+    			window.location.href = "homepage.jsp";
             } else {   			
             	alert(JSON.stringify(data));
             }

@@ -143,6 +143,12 @@
 		            <span class="font-bold leading-none" style="font-size: 2.5rem; line-height: 1;">+</span>
 		        `;
 		
+				floatingButton.addEventListener("click", function (event) { 
+					event.preventDefault();
+					if (!userId) { 
+						alert("You must be logged in to create a post!"); 
+						} 
+						window.location.href = redirectPage; });
 		        // Append the button to the DOM
 		        document.body.appendChild(floatingButton);
 		    });
