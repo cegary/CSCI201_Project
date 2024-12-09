@@ -67,8 +67,9 @@
             if (data.user_id != -1) {
     			localStorage.setItem("user_id", data.user_id);
     			window.location.href = "homepage.jsp";
-            } else {   			
-            	alert(JSON.stringify(data));
+            } else { 
+            	console.log("you input incorrect");
+            	alert("Your input is incorrect.");
             }
         })
         .catch(error => {

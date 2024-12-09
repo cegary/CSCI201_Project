@@ -29,13 +29,13 @@ public class LoginServlet extends HttpServlet {
             	response.getWriter().write("{\"user_id\":" + rs.getInt("id") + "}");
             } 
             else {
-                response.getWriter().println("Invalid username or password.");
+                response.getWriter().println("{\"user_id\":-1}");
             }
             conn.close();
         }
         catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("An error occurred: " + e.getMessage());
+            response.getWriter().println("{\"user_id\":-1}");
         }
     }
 }
