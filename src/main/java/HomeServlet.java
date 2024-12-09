@@ -33,7 +33,7 @@ public class HomeServlet extends HttpServlet {
         		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id";
         	}
         	else if (search_type.compareTo("1") == 0)
-        	{
+        	{ //hello
         		System.out.println("SQL QUERY 1");
         		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
         				+ "on posts.user_id=users.id WHERE title ='" + search_content + "' ORDER BY posts.post_id DESC";
