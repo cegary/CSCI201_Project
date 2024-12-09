@@ -18,9 +18,44 @@ public class HomeServlet extends HttpServlet {
 
     @Override protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("user_id");
+        String search_type = "";
+        search_type = request.getParameter("search_type");
+        String search_content = "";
+        search_content = request.getParameter("search_content");
+        System.out.println("search_type: " + search_type);
+        System.out.println("search_content; " + search_content);
+        
         try {
         	Connection conn = DriverManager.getConnection(DB_URL);
-        	String sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id ORDER BY posts.post_id DESC";
+        	String sqlQuery = "";
+        	if (search_type == null) 
+        	{
+        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id";
+        	}
+        	else if (search_type.compareTo("1") == 0)
+        	{
+        		System.out.println("SQL QUERY 1");
+        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
+        				+ "on posts.user_id=users.id WHERE title ='" + search_content + "' ORDER BY posts.post_id DESC";
+        		//sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users on posts.user_id=users.id ORDER BY posts.post_id DESC";
+        	}	
+        	else if (search_type.compareTo("2") == 0)
+        	{
+        		System.out.println("SQL QUERY 2");
+//        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
+//        				+ "on posts.user_id=users.id WHERE location ='" + search_content + "'";
+        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
+        				+ "on posts.user_id=users.id WHERE location ='" + search_content + "' ORDER BY posts.post_id DESC";
+        	}
+        	else if (search_type.compareTo("3") == 0)
+        	{
+        		System.out.println("SQL QUERY 3");
+//        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
+//        				+ "on posts.user_id=users.id WHERE users.username ='" + search_content + "'";
+        		sqlQuery = "SELECT title, location, image, contact, description, users.username FROM posts LEFT JOIN users "
+        				+ "on posts.user_id=users.id WHERE users.username ='" + search_content + "' ORDER BY posts.post_id DESC";
+        	}
+        	System.out.println("SQL: " + sqlQuery);
         	PreparedStatement ps = conn.prepareStatement(sqlQuery);
         	ResultSet rs = ps.executeQuery();
         	String posts = "{\"posts\":[";
